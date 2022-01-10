@@ -6,7 +6,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @EnableWebSecurity
-@Profile("peer1,peer2")
+@Profile({"peer1", "peer2"})
 public class PeerSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
