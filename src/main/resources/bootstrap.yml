@@ -1,0 +1,14 @@
+---
+spring:
+  config.activate.onProfile: peer1,peer2
+  cloud:
+    config:
+      name: newv-discovery
+      uri: http://${CLOUD_CONFIG_URI:newv-config}:${CLOUD_CONFIG_PORT:8888}
+---
+spring:
+  config.activate.onProfile: dev
+  cloud:
+    config:
+      name: test-local
+      uri: http://${CLOUD_CONFIG_URI:localhost}:${CLOUD_CONFIG_PORT:8888}
