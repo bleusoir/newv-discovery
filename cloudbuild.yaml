@@ -15,11 +15,10 @@ steps:
     name: 'gcr.io/cloud-builders/gradle'
     id: 'Gradle jib build'
     entrypoint: 'bash'
-    env:
-      - 'NEWV_DISCOVERY_IMAGE_REGISTRY=${_NEWV_DISCOVERY_IMAGE_REGISTRY}'
     args:
       - '-c'
       - |
+        NEWV_DISCOVERY_IMAGE_REGISTRY=${_NEWV_DISCOVERY_IMAGE_REGISTRY}
         chmod +x ./gradlew
         echo $NEWV_DISCOVERY_IMAGE_REGISTRY
         ./gradlew jib
