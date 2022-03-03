@@ -54,7 +54,7 @@ jib {
         image = "openjdk:17-jdk-alpine"
     }
     to {
-        image = System.getenv("NEWV_DISCOVERY_IMAGE_REGISTRY")
+        image = System.getenv("_NEWV_DISCOVERY_IMAGE_REGISTRY")
         tags = ["latest"]
     }
     container {
