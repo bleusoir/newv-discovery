@@ -17,4 +17,4 @@ steps:
     args:
       - '-c'
       - |
-        gradlew jib
+        ./gradlew jib
