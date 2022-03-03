@@ -17,7 +17,11 @@ steps:
     name: 'gcr.io/cloud-builders/gradle'
     id: 'Gradle jib build'
     entrypoint: 'bash'
-    args: [
-      '-c',
-      './gradlew jib'
-    ]
+    args:
+      [
+        '-c',
+        './gradlew jib'
+      ]
+    volumes:
+      - name: user.home
+        path: /root
