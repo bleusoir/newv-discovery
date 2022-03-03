@@ -18,5 +18,7 @@ steps:
     args:
       - '-c'
       - |
+        echo registry
+        echo $_NEWV_DISCOVERY_IMAGE_REGISTRY
         chmod +x ./gradlew
         ./gradlew jib
