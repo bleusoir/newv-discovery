@@ -9,19 +9,12 @@ steps:
       - |
         mkdir .docker &&
         ln -s $$HOME/.docker/config.json .docker/config.json
-    volumes:
-      - name: user.home
-        path: /root
 
   - # Compiles the app and Jib build.
     name: 'gcr.io/cloud-builders/gradle'
     id: 'Gradle jib build'
     entrypoint: 'bash'
     args:
-      [
-        '-c',
-        './gradlew jib'
-      ]
-    volumes:
-      - name: user.home
-        path: /root
+      - '-c'
+      - |
+        gradlew jib
