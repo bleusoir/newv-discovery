@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: newv-discovery
+  labels:
+    app: newv-discovery
+    keel.sh/policy: all
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: newv-discovery
+  template:
+    metadata:
+      labels:
+        app: newv-discovery
+    spec:
+      containers:
+        - name: newv-discovery-app
+          image: asia-northeast3-docker.pkg.dev/newv-project-1/newv/discovery:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8761
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8761
+            initialDelaySeconds: 30
+            timeoutSeconds: 10

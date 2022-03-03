@@ -1,0 +1,22 @@
+steps:
+
+  - # Uses the Cloud Builder Gradle image since it is cached.
+    name: gcr.io/cloud-builders/gradle
+    dir: /root
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        mkdir .docker &&
+        ln -s $$HOME/.docker/config.json .docker/config.json
+    volumes:
+      - name: user.home
+        path: /root
+
+  - # Compiles the app and Jib build.
+    name: gcr.io/cloud-builders/gradle
+    args:
+      - jib
+    volumes:
+      - name: user.home
+        path: /root

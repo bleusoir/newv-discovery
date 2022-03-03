@@ -14,6 +14,7 @@ public class DevSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .csrf().disable()
-                .authorizeRequests().anyRequest().permitAll();
+                .authorizeRequests().anyRequest().permitAll()
+                .and().headers().frameOptions().disable();
     }
 }

@@ -1,6 +1,7 @@
 plugins {
     id 'org.springframework.boot' version '2.5.7'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'com.google.cloud.tools.jib' version '3.2.0'
     id 'java'
 }
 
@@ -27,6 +28,7 @@ dependencies {
 
     implementation 'org.springframework.cloud:spring-cloud-starter'
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
 
@@ -45,4 +47,17 @@ dependencyManagement {
 
 test {
     useJUnitPlatform()
+}
+
+jib {
+    from {
+        image = "openjdk:17-jdk-alpine"
+    }
+    to {
+        image = System.getenv("NEWV_DISCOVERY_IMAGE_REGISTRY")
+        tags = ["latest"]
+    }
+    container {
+        jvmFlags = ["-Xms128m", "-Xmx128m"]
+    }
 }
