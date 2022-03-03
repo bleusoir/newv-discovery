@@ -1,7 +1,7 @@
 steps:
 
   - # Uses the Cloud Builder Gradle image since it is cached.
-    name: gcr.io/cloud-builders/gradle
+    name: 'gcr.io/cloud-builders/gradle'
     dir: /root
     entrypoint: bash
     args:
@@ -14,9 +14,10 @@ steps:
         path: /root
 
   - # Compiles the app and Jib build.
-    name: gcr.io/cloud-builders/gradle
-    args:
-      - jib
-    volumes:
-      - name: user.home
-        path: /root
+    name: 'gcr.io/cloud-builders/gradle'
+    id: 'Gradle jib build'
+    entrypoint: 'bash'
+    args: [
+      '-c',
+      './gradlew jib'
+    ]
