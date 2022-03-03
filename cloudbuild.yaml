@@ -2,6 +2,7 @@ steps:
 
   - # Uses the Cloud Builder Gradle image since it is cached.
     name: 'gcr.io/cloud-builders/gradle'
+    id: 'Cache'
     dir: /root
     entrypoint: bash
     args:
@@ -17,4 +18,5 @@ steps:
     args:
       - '-c'
       - |
+        chmod +x ./gradlew
         ./gradlew jib
