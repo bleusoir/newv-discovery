@@ -18,7 +18,8 @@ steps:
     args:
       - '-c'
       - |
-        echo registry
+        echo registry url env
         echo $_NEWV_DISCOVERY_IMAGE_REGISTRY
+        REGISTRY=${_NEWV_DISCOVERY_IMAGE_REGISTRY}
         chmod +x ./gradlew
-        ./gradlew jib
+        ./gradlew jib -Djib.to.image="$${REGISTRY}"
