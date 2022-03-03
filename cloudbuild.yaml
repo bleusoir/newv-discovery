@@ -1,7 +1,7 @@
 steps:
 
   - # Uses the Cloud Builder Gradle image since it is cached.
-    name: 'gcr.io/cloud-builders/gradle'
+    name: 'gcr.io/distroless/java17'
     id: 'Cache'
     dir: /root
     entrypoint: bash
@@ -12,7 +12,7 @@ steps:
         ln -s $$HOME/.docker/config.json .docker/config.json
 
   - # Compiles the app and Jib build.
-    name: 'gcr.io/cloud-builders/gradle'
+    name: 'gcr.io/distroless/java17'
     id: 'Gradle jib build'
     entrypoint: 'bash'
     args:
