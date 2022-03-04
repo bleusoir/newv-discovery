@@ -1,7 +1,7 @@
 steps:
 
   - # Uses the Cloud Builder Gradle image since it is cached.
-    name: 'gcr.io/distroless/java17'
+    name: 'gcr.io/cloud-builders/gcloud'
     id: 'Cache'
     dir: /root
     entrypoint: bash
