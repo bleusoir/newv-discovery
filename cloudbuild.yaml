@@ -12,7 +12,7 @@ steps:
         ln -s $$HOME/.docker/config.json .docker/config.json
 
   - # Compiles the app and Jib build.
-    name: 'gcr.io/distroless/java17'
+    name: 'openjdk:17.0.2-slim'
     id: 'Gradle jib build'
     entrypoint: 'bash'
     args:
