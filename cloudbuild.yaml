@@ -23,3 +23,20 @@ steps:
         REGISTRY=${_NEWV_DISCOVERY_IMAGE_REGISTRY}
         chmod +x ./gradlew
         ./gradlew jib -Djib.to.image="$${REGISTRY}"
+
+  - id: 'Deploy'
+    name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        echo $PROJECT_ID
+        echo $LOCATION
+        CLUSTER=${_CLOUDSDK_CONTAINER_CLUSTER}
+        PROJECT=$(gcloud config get-value core/project)
+        ZONE=${_CLOUDSDK_COMPUTE_ZONE}
+        gcloud container clusters get-credentials "$${CLUSTER}" \
+          --project "$${PROJECT}" \
+          --zone "$${ZONE}"
+        
+        kubectl apply -f k8s/newv-discovery-deployment.yaml
