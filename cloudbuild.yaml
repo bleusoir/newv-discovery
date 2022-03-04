@@ -31,12 +31,11 @@ steps:
       - '-c'
       - |
         echo $PROJECT_ID
-        echo $LOCATION
         CLUSTER=${_CLOUDSDK_CONTAINER_CLUSTER}
         PROJECT=$(gcloud config get-value core/project)
         ZONE=${_CLOUDSDK_COMPUTE_ZONE}
         gcloud container clusters get-credentials "$${CLUSTER}" \
-          --project "$${PROJECT}" \
+          --project ${PROJECT_ID} \
           --zone "$${ZONE}"
         
         kubectl apply -f k8s/newv-discovery-deployment.yaml
